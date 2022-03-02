@@ -10,7 +10,7 @@ git pull && \
 # automatically merge master with develop and accept auto-generated commit message
 git pull --rebase=false --no-edit origin master && \
 
-# only only merging when fast forwarding is possible
+# merge feature branch into develop
 echo "Merging $BRANCH with -ff" && \
 git merge --no-edit "$BRANCH" && \
 
