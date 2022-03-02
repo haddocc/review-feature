@@ -9,5 +9,10 @@
     "version": "dev-master",
     "bin": [
         "bin/frev"
-    ]
+    ],
+    "scripts": {
+        "review": [
+            "sh ./bin/frev"
+        ]
+    }
 }
