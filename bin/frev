@@ -11,7 +11,7 @@ git pull && \
 git pull --rebase=false --no-edit origin master && \
 
 # merge feature branch into develop
-echo "Merging $BRANCH with -ff" && \
+echo "Merging $BRANCH with develop" && \
 git merge --no-edit "$BRANCH" && \
 
 echo "Pushing to origin" && \
