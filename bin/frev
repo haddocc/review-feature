@@ -10,7 +10,7 @@ git stash --include-untracked
   echo "Checking out develop branch and updating it with master"
   git checkout develop && \
   git pull && \
-  # automatically merge master with develop and accept auto-generated commit message
+  # automatically merge master with develop and accept auto-generated commit message, --rebase=false forces a merge commit
   git pull --rebase=false --no-edit origin master && \
 
   # merge feature branch into develop
