@@ -4,21 +4,27 @@
 BRANCH="$1"
 [ -z "$BRANCH" ] && BRANCH="$(git branch --show-current)"
 
-echo "Checking out develop branch and updating it with master"
-git checkout develop && \
-git pull && \
-# automatically merge master with develop and accept auto-generated commit message
-git pull --rebase=false --no-edit origin master && \
+# save current working tree including untracked files for restoration after command
+git stash --include-untracked
 
-# merge feature branch into develop
-echo "Merging $BRANCH with develop" && \
-git merge --no-edit "$BRANCH" && \
+  echo "Checking out develop branch and updating it with master"
+  git checkout develop && \
+  git pull && \
+  # automatically merge master with develop and accept auto-generated commit message
+  git pull --rebase=false --no-edit origin master && \
 
-echo "Pushing to origin" && \
-git push || \
-echo 'review failed'
+  # merge feature branch into develop
+  echo "Merging $BRANCH with develop" && \
+  git merge --no-edit "$BRANCH" && \
 
-echo "Going back to $BRANCH"
-git checkout "$BRANCH"
+  echo "Pushing to origin" && \
+  git push || \
+  echo 'review failed'
+
+  echo "Going back to $BRANCH"
+  git checkout "$BRANCH"
+
+# restore original state
+git stash pop
 
 exit 0
